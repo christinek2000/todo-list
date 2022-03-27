@@ -1,11 +1,12 @@
-import { useState } from 'react';
 
-function TodoItem() {
-	const [item, setItem] = useState([]);
+function TodoItem(props) {
+	console.log(props);
+
+	const { description } = props.item;
 
 	return(
 		<div className="todoItem" >
-			Todo Item
+			{description}
 		</div>
 	);
 }

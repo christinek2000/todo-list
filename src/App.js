@@ -17,7 +17,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<TodoList addHandler={addHandler} />
+			<TodoList items={items} addHandler={addHandler} />
 			<CompletedItems />
 		</div>
 	);

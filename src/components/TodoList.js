@@ -4,6 +4,14 @@ import { Grid } from '@material-ui/core';
 import AddTodoItem from './AddTodoItem';
 
 function TodoList(props) {
+	console.log(props);
+
+	const renderList = props.items.map((item) => {
+		return (
+			<TodoItem item={item} />
+		)
+	});
+
 	return (
 		<div className="todoList">
 			<Grid 
@@ -16,7 +24,7 @@ function TodoList(props) {
 				<Grid item xs={8} sm={6}>
 					Todo List
 					<AddTodoItem addHandler={props.addHandler} />
-					<TodoItem />
+					{renderList}
 				</Grid>
 			</Grid>
 		</div>
