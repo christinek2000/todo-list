@@ -2,11 +2,12 @@
 function TodoItem(props) {
 	console.log(props);
 
-	const { description } = props.item;
+	const { id, description } = props.item;
 
 	return(
 		<div className="todoItem" >
 			{description}
+			<button onClick={() => props.deleteHandler(id)}>x</button>
 		</div>
 	);
 }
