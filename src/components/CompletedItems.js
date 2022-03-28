@@ -1,8 +1,16 @@
 
-function CompletedItems() {
+function CompletedItems(props) {
+
+	const renderItems = props.completedItems.map((item) => {
+		return (<li>{item.description}</li>)
+	});
+
 	return(
-		<div className="completedItems" >
+		<div className="completedItems">
 			Completed Items
+			<ul>
+				{renderItems}
+			</ul>
 		</div>
 	);
 }

@@ -8,7 +8,7 @@ function TodoList(props) {
 
 	const renderList = props.items.map((item) => {
 		return (
-			<TodoItem item={item} deleteHandler={props.deleteHandler} />
+			<TodoItem item={item} deleteHandler={props.deleteHandler} completionHandler={props.completionHandler} />
 		)
 	});
 

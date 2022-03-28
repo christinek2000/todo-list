@@ -9,6 +9,7 @@ import { useState } from 'react'
 function App() {
 
 	const [items, setItems] = useState([]);
+	const [completedItems, setCompletedItems] = useState([]);
 
 	const addHandler = (item) => {
 		console.log(item);
@@ -21,10 +22,18 @@ function App() {
 		setItems(newItems);
 	};
 
+	const completionHandler = (id) => {
+		const completedItem = items.find((item) => item.id == id);
+		setCompletedItems([...completedItems, completedItem]);
+		const newItems = items.filter((item) => item.id !== id);
+		setItems(newItems);
+		console.log(completedItem);
+	}
+
 	return (
 		<div className="App">
-			<TodoList items={items} addHandler={addHandler} deleteHandler={deleteHandler} />
-			<CompletedItems />
+			<TodoList items={items} addHandler={addHandler} deleteHandler={deleteHandler} completionHandler={completionHandler} />
+			<CompletedItems completedItems={completedItems} />
 		</div>
 	);
 }
