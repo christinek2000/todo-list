@@ -1,0 +1,8 @@
+.CompletedItems {
+	min-height: 85vh;
+	text-align: center;
+}
+
+.CompletedItems ul {
+	list-style-type: none;
+}

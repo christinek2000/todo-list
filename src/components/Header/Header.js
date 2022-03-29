@@ -10,15 +10,15 @@ function Header() {
 			display="flex" 
 			sx={{
 				alignItems: 'center',
-				justifyContent: 'space-around'
+				justifyContent: 'space-around',
 			}}
 		>
-			<h2>Tasks</h2>
-			<nav className="Navigation">
-				<ui>
+			<h2>TODO</h2>
+			<nav>
+				<ul className="navigation">
 					<li><NavLink to="/" className="navLink">Todo List</NavLink></li>
 					<li><NavLink to="/completedList" className="navLink">Completed List</NavLink></li>
-				</ui>
+				</ul>
 			</nav>
 			
 		</Box>		

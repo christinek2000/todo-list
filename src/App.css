@@ -1,0 +1,11 @@
+.App {
+	background-color: #ffff;
+	border-radius: 5pt;
+	font-family: Verdana;
+	font-size: 15px;
+}
+
+.innerSection {
+	background-color: #d1c6e4;
+	margin: 20pt;
+}

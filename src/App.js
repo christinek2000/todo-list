@@ -1,7 +1,7 @@
 import './App.css';
-import Header from './components/Header'
-import TodoList from './components/TodoList';
-import CompletedItems from './components/CompletedItems';
+import Header from './components/Header/Header'
+import TodoList from './components/TodoList/TodoList';
+import CompletedItems from './components/CompletedItems/CompletedItems';
 import { v4 as uuid_v4 } from 'uuid';
 
 import { useState } from 'react'
@@ -34,14 +34,15 @@ function App() {
 
 	return (
 		<div className="App">
-			<Router>
-				<Header />
-				<Routes>
-					<Route exact path="/" element={<TodoList items={items} addHandler={addHandler} deleteHandler={deleteHandler} completionHandler={completionHandler} />} ></Route>
-					<Route path="/completedList" element={<CompletedItems completedItems={completedItems} />}></Route>
-				</Routes>
-			</Router>
-			
+			<div className="innerSection">
+				<Router>
+					<Header />
+					<Routes>
+						<Route exact path="/" element={<TodoList items={items} addHandler={addHandler} deleteHandler={deleteHandler} completionHandler={completionHandler} />} ></Route>
+						<Route path="/completedList" element={<CompletedItems completedItems={completedItems} />}></Route>
+					</Routes>
+				</Router>
+			</div>	
 		</div>
 	);
 }

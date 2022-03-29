@@ -1,0 +1,31 @@
+.AddItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 35pt;
+	margin-top: 10pt;
+	background-color: #ffff;
+	border-radius: 5pt;
+	width: 100%;
+}
+
+.AddItem input {
+	border: none;
+	border-bottom: 1px solid lightgray;
+	margin: 0pt 10pt;
+	width: 100%;
+}
+
+input[type=text]:focus {
+	border: none;
+}
+
+.addButton {
+	border: none;
+	border-radius: 5pt;
+	background-color: transparent;
+}
+
+.addImg {
+	width: 10pt;
+}

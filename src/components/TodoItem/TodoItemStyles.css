@@ -1,0 +1,32 @@
+.TodoItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 35pt;
+	background-color: #ffff;
+	border-radius: 5pt;
+}
+
+.itemDescription {
+	width: 600pt;
+	height: 20pt;
+	text-align: left;
+	margin: 0pt 10pt 0pt 10pt;
+	border-bottom: 1px solid lightgray;
+}
+
+.completeButton {
+	border-radius: 100%;
+	padding: 10px;
+	margin-left: 5px;
+	border: lightgray;
+}
+
+.deleteImg {
+	width: 10pt;
+}
+
+.deleteButton {
+	background-color: transparent;
+	border: none;
+}

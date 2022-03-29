@@ -1,14 +1,16 @@
-import TodoItem from './TodoItem';
+import TodoItem from '../TodoItem/TodoItem';
 import "./TodoListStyles.css"
-import { Grid } from '@material-ui/core';
-import AddTodoItem from './AddTodoItem';
+import { Grid, Typography } from '@material-ui/core';
+import AddTodoItem from '../AddTodoItem/AddTodoItem';
 
 function TodoList(props) {
 	console.log(props);
 
 	const renderList = props.items.map((item) => {
 		return (
-			<TodoItem item={item} deleteHandler={props.deleteHandler} completionHandler={props.completionHandler} />
+			<Grid className="item" item xs={12} sm={11} md={6}>
+				<TodoItem item={item} deleteHandler={props.deleteHandler} completionHandler={props.completionHandler} />
+			</Grid>
 		)
 	});
 
@@ -21,10 +23,9 @@ function TodoList(props) {
 				alignItems="center" 
 				justifyContent="center" 
 			>
-				<Grid item xs={8} sm={6}>
-					Todo List
+				{renderList}
+				<Grid className="item" item xs={12} sm={11} md={6}>
 					<AddTodoItem addHandler={props.addHandler} />
-					{renderList}
 				</Grid>
 			</Grid>
 		</div>

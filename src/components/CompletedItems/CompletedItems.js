@@ -1,3 +1,4 @@
+import './CompletedItems.css'
 
 function CompletedItems(props) {
 
@@ -6,7 +7,7 @@ function CompletedItems(props) {
 	});
 
 	return(
-		<div className="completedItems">
+		<div className="CompletedItems">
 			Completed Items
 			<ul>
 				{renderItems}
