@@ -4,13 +4,24 @@ import TodoList from './components/TodoList/TodoList';
 import CompletedItems from './components/CompletedItems/CompletedItems';
 import { v4 as uuid_v4 } from 'uuid';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
 function App() {
+	document.body.style.backgroundColor = "#d1c6e4";
+	const LOCAL_STORAGE_KEY = "todo";
 
 	const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		const retrieveList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+		if(retrieveList) setItems(retrieveList);
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+	}, [items])
 
 	const addHandler = (item) => {
 		setItems([...items, {id: uuid_v4(), isComplete: false, ...item}]);
@@ -55,28 +66,26 @@ function App() {
 
 	return (
 		<div className="App">
-			<div className="innerSection">
-				<Router>
-					<Header />
-					<Routes>
-						<Route 
-							exact
-							path="/"
-							element={
-								<TodoList
-									items={items}
-									addHandler={addHandler}
-									deleteHandler={deleteHandler}
-									completionHandler={completionHandler}
-									itemChangeHandler={itemChangeHandler}
-									revertHandler={revertHandler}
-								/>
-							} 
-						/>
-						<Route path="/completedList" element={<CompletedItems items={items} revertHandler={revertHandler} />} />
-					</Routes>
-				</Router>
-			</div>	
+			<Router>
+				<Header />
+				<Routes>
+					<Route 
+						exact
+						path="/"
+						element={
+							<TodoList
+								items={items}
+								addHandler={addHandler}
+								deleteHandler={deleteHandler}
+								completionHandler={completionHandler}
+								itemChangeHandler={itemChangeHandler}
+								revertHandler={revertHandler}
+							/>
+						} 
+					/>
+					<Route path="/completedList" element={<CompletedItems items={items} revertHandler={revertHandler} />} />
+				</Routes>
+			</Router>
 		</div>
 	);
 }

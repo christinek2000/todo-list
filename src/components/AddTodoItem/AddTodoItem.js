@@ -17,6 +17,7 @@ class AddTodoItem extends React.Component{
 			return
 		}
 		this.props.addHandler(this.state);
+		this.setState({ description: "" });
 	}
 
 
@@ -26,7 +27,6 @@ class AddTodoItem extends React.Component{
 				<input
 					className="newItem"
 					type="text"
-					placeholder="..."
 					name="newTodoItem"
 					value={this.state.description}
 					onChange={ (e) => this.setState({ description: e.target.value })}
