@@ -16,7 +16,6 @@ function App() {
 	const addHandler = (item) => {
 		console.log(item);
 		setItems([...items, {id: uuid_v4(), ...item}]);
-		console.log(items);
 	};
 
 	const deleteHandler = (id) => {
@@ -32,14 +31,41 @@ function App() {
 		console.log(completedItem);
 	}
 
+	const itemChangeHandler = (e, id) => {
+		e.preventDefault();
+		console.log(items);
+		console.log(e.target.value);
+		const newItems = items.slice().map((item) => {
+			if(item.id == id) {
+				item.description = e.target.value;
+			}
+			return item
+		}
+		);
+		console.log(newItems);
+		setItems(newItems);
+	}
+
 	return (
 		<div className="App">
 			<div className="innerSection">
 				<Router>
 					<Header />
 					<Routes>
-						<Route exact path="/" element={<TodoList items={items} addHandler={addHandler} deleteHandler={deleteHandler} completionHandler={completionHandler} />} ></Route>
-						<Route path="/completedList" element={<CompletedItems completedItems={completedItems} />}></Route>
+						<Route 
+							exact
+							path="/"
+							element={
+								<TodoList
+									items={items}
+									addHandler={addHandler}
+									deleteHandler={deleteHandler}
+									completionHandler={completionHandler}
+									itemChangeHandler={itemChangeHandler}
+								/>
+							} 
+						/>
+						<Route path="/completedList" element={<CompletedItems completedItems={completedItems} />} />
 					</Routes>
 				</Router>
 			</div>	

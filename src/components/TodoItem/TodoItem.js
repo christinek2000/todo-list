@@ -1,7 +1,6 @@
 import "./TodoItemStyles.css"
 import deleteButton from "../../img/deleteButton.png"
 
-
 function TodoItem(props) {
 	console.log(props);
 
@@ -11,7 +10,7 @@ function TodoItem(props) {
 		<div className="TodoItem">
 			<button className="completeButton" onClick={() => props.completionHandler(id)}></button>
 			<div className="itemDescription">
-				{description}
+				<input className="itemInput" type="text" value={description} onChange={(e) => props.itemChangeHandler(e, id)} />
 			</div>
 			<button className="deleteButton" onClick={() => props.deleteHandler(id)}>
 				<img className="deleteImg" src={deleteButton} alt="deleteButton" />

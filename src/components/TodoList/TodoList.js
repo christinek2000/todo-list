@@ -9,7 +9,12 @@ function TodoList(props) {
 	const renderList = props.items.map((item) => {
 		return (
 			<Grid className="item" item xs={12} sm={11} md={6}>
-				<TodoItem item={item} deleteHandler={props.deleteHandler} completionHandler={props.completionHandler} />
+				<TodoItem 
+					item={item} 
+					deleteHandler={props.deleteHandler} 
+					completionHandler={props.completionHandler}
+					itemChangeHandler={props.itemChangeHandler}
+				/>
 			</Grid>
 		)
 	});
