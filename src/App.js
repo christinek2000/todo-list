@@ -11,11 +11,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {
 
 	const [items, setItems] = useState([]);
-	const [completedItems, setCompletedItems] = useState([]);
 
 	const addHandler = (item) => {
-		console.log(item);
-		setItems([...items, {id: uuid_v4(), ...item}]);
+		setItems([...items, {id: uuid_v4(), isComplete: false, ...item}]);
 	};
 
 	const deleteHandler = (id) => {
@@ -24,26 +22,35 @@ function App() {
 	};
 
 	const completionHandler = (id) => {
-		const completedItem = items.find((item) => item.id == id);
-		setCompletedItems([...completedItems, completedItem]);
-		const newItems = items.filter((item) => item.id !== id);
+		const newItems = items.slice().map((item) => {
+			if(item.id == id) {
+				item.isComplete = true;
+			}
+			return item;
+		});
 		setItems(newItems);
-		console.log(completedItem);
 	}
 
 	const itemChangeHandler = (e, id) => {
 		e.preventDefault();
-		console.log(items);
-		console.log(e.target.value);
 		const newItems = items.slice().map((item) => {
 			if(item.id == id) {
 				item.description = e.target.value;
 			}
 			return item
-		}
-		);
-		console.log(newItems);
+		});
 		setItems(newItems);
+	}
+
+	const revertHandler = (id) => {
+		const newItems = items.slice().map((item) => {
+			if(item.id == id) {
+				item.isComplete = false;
+			}
+			return item
+		});
+		setItems(newItems);
+		console.log(newItems);
 	}
 
 	return (
@@ -62,10 +69,11 @@ function App() {
 									deleteHandler={deleteHandler}
 									completionHandler={completionHandler}
 									itemChangeHandler={itemChangeHandler}
+									revertHandler={revertHandler}
 								/>
 							} 
 						/>
-						<Route path="/completedList" element={<CompletedItems completedItems={completedItems} />} />
+						<Route path="/completedList" element={<CompletedItems items={items} revertHandler={revertHandler} />} />
 					</Routes>
 				</Router>
 			</div>	

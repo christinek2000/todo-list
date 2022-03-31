@@ -1,9 +1,14 @@
 import './CompletedItems.css'
 
 function CompletedItems(props) {
-
-	const renderItems = props.completedItems.map((item) => {
-		return (<li>{item.description}</li>)
+	console.log(props);
+	const renderItems = props.items.map((item) => {
+		if(item.isComplete) return (
+			<div className="TodoItem">
+				<button onClick={() => props.revertHandler(item.id)}>R</button>
+				{item.description}
+			</div>
+		)
 	});
 
 	return(
