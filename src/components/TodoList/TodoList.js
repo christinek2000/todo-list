@@ -21,20 +21,18 @@ function TodoList(props) {
 	});
 
 	return (
-		<div className="todoList">
-			<Grid 
-				container
-				spacing={2}
-				direction="column-reverse"
-				alignItems="center" 
-				justifyContent="center" 
-			>
-				{renderList}
-				<Grid className="item" item xs={12} sm={11} md={6}>
-					<AddTodoItem addHandler={props.addHandler} />
-				</Grid>
+		<Grid 
+			container
+			spacing={2}
+			direction="column-reverse"
+			alignItems="center" 
+			justifyContent="center" 
+		>
+			{renderList}
+			<Grid className="item" item xs={12} sm={11} md={6}>
+				<AddTodoItem addHandler={props.addHandler} />
 			</Grid>
-		</div>
+		</Grid>
 	);
 }
 

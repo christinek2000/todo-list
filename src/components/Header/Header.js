@@ -16,7 +16,7 @@ function Header() {
 			<h2>TODO</h2>
 			<nav>
 				<ul className="navigation">
-					<li><NavLink to="/" className="navLink">Todo List</NavLink></li>
+					<li><NavLink to="/todoList" className="navLink">Todo List</NavLink></li>
 					<li><NavLink to="/completedList" className="navLink">Completed List</NavLink></li>
 				</ul>
 			</nav>

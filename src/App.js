@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header/Header'
 import TodoList from './components/TodoList/TodoList';
 import CompletedItems from './components/CompletedItems/CompletedItems';
+import StartNow from './components/StartNow/StartNow'
 import { v4 as uuid_v4 } from 'uuid';
 
 import { useState, useEffect } from 'react'
@@ -14,9 +15,12 @@ function App() {
 
 	const [items, setItems] = useState([]);
 
+
 	useEffect(() => {
 		const retrieveList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-		if(retrieveList) setItems(retrieveList);
+		if(retrieveList) {
+			setItems(retrieveList);
+		}
 	}, [])
 
 	useEffect(() => {
@@ -34,7 +38,7 @@ function App() {
 
 	const completionHandler = (id) => {
 		const newItems = items.slice().map((item) => {
-			if(item.id == id) {
+			if(item.id === id) {
 				item.isComplete = true;
 			}
 			return item;
@@ -45,7 +49,7 @@ function App() {
 	const itemChangeHandler = (e, id) => {
 		e.preventDefault();
 		const newItems = items.slice().map((item) => {
-			if(item.id == id) {
+			if(item.id === id) {
 				item.description = e.target.value;
 			}
 			return item
@@ -55,7 +59,7 @@ function App() {
 
 	const revertHandler = (id) => {
 		const newItems = items.slice().map((item) => {
-			if(item.id == id) {
+			if(item.id === id) {
 				item.isComplete = false;
 			}
 			return item
@@ -67,23 +71,36 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<Header />
 				<Routes>
+					<Route exact path="/" element={<StartNow />} />
 					<Route 
-						exact
-						path="/"
+						path="/todoList"
 						element={
-							<TodoList
-								items={items}
-								addHandler={addHandler}
-								deleteHandler={deleteHandler}
-								completionHandler={completionHandler}
-								itemChangeHandler={itemChangeHandler}
-								revertHandler={revertHandler}
-							/>
+							<>
+								<Header />
+								<TodoList
+									items={items}
+									addHandler={addHandler}
+									deleteHandler={deleteHandler}
+									completionHandler={completionHandler}
+									itemChangeHandler={itemChangeHandler}
+									revertHandler={revertHandler}
+								/>
+							</>
 						} 
 					/>
-					<Route path="/completedList" element={<CompletedItems items={items} revertHandler={revertHandler} />} />
+					<Route 
+						path="/completedList" 
+						element={
+							<>
+								<Header />
+								<CompletedItems 
+									items={items}
+									revertHandler={revertHandler} 
+								/>
+							</>
+						}
+					/>
 				</Routes>
 			</Router>
 		</div>
