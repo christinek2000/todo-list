@@ -4,13 +4,17 @@
 	flex-direction: column-reverse;
 	justify-content: center;
 	align-items: center;
-	width: 90%;
+	width: 50%;
 }
 
 .reverseButton {
-	border-radius: 100%;
 	border: none;
 	margin-right: 8pt;
+	background-color: transparent;
+}
+
+.revertImg {
+	width: 17pt;
 }
 
 .todoItem {
@@ -21,4 +25,16 @@
 	margin-top: 10pt;
 	display: flex;
 	align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+	.CompletedList {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.CompletedList {
+		width: 100%;
+	}
 }

@@ -1,14 +1,16 @@
 import './CompletedItems.css'
+import revert from '../../img/revert.png'
 
 function CompletedItems(props) {
-	console.log(props);
 	const renderItems = props.items.map((item) => {
 		if(item.isComplete) return (
 			<div className="todoItem">
 				<div className="itemDescription">
 					{item.description}
 				</div>
-				<button className="reverseButton" onClick={() => props.revertHandler(item.id)}>R</button>
+				<button className="reverseButton" onClick={() => props.revertHandler(item.id)}>
+					<img className="revertImg" src={revert} alternative="revertImage" />
+				</button>
 			</div>
 		)
 	});
@@ -16,7 +18,6 @@ function CompletedItems(props) {
 	return(
 		<div className="CompletedList">
 			{renderItems}
-			Completed List
 		</div>
 	);
 }

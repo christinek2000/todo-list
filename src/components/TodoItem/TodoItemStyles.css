@@ -24,16 +24,18 @@
 
 .completeButton {
 	border-radius: 100%;
-	padding: 10px;
-	margin-left: 5px;
-	border: lightgray;
+	padding: 8px;
+	margin-left: 10px;
+	background-color: #ffff;
+	border: 1px solid black;
 }
 
 .deleteImg {
-	width: 10pt;
+	width: 13pt;
 }
 
 .deleteButton {
 	background-color: transparent;
 	border: none;
+	margin-right: 10pt;
 }
