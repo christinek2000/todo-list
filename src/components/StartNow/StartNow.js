@@ -12,7 +12,9 @@ function StartNow() {
 	return(
 		<div className='StartNow'>
 			<h2>TODO LIST</h2>
-			<button className='startButton' type='button' onClick={todoListPage}>Start Now</button>
+			<button className='startButton' type='button' onClick={todoListPage}>
+				Start Now
+			</button>
 		</div>
 	)
 }

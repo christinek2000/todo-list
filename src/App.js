@@ -1,20 +1,20 @@
-import './App.css';
 import Header from './components/Header/Header'
 import TodoList from './components/TodoList/TodoList';
 import CompletedItems from './components/CompletedItems/CompletedItems';
 import StartNow from './components/StartNow/StartNow'
-import { v4 as uuid_v4 } from 'uuid';
+import './App.css';
 
+import { v4 as uuid_v4 } from 'uuid';
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
+import 'array.prototype.move';
 
 function App() {
-	document.body.style.backgroundColor = "#d1c6e4";
+	document.body.style.backgroundColor = '#d1c6e4';
+
 	const LOCAL_STORAGE_KEY = "todo";
-
 	const [items, setItems] = useState([]);
-
+	const [dragID, setDragID] = useState();
 
 	useEffect(() => {
 		const retrieveList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -65,7 +65,19 @@ function App() {
 			return item
 		});
 		setItems(newItems);
-		console.log(newItems);
+	}
+
+	const dragHandler = (id) => {
+		setDragID(id);
+	}
+
+	const dropHandler = (id) => {
+		const dragItem = items.find((item) => item.id === dragID);
+		const dropItem = items.find((item) => item.id === id);
+		
+		const newItems = items.slice();
+		newItems.move(items.indexOf(dragItem), items.indexOf(dropItem));
+		setItems(newItems);
 	}
 
 	return (
@@ -85,6 +97,8 @@ function App() {
 									completionHandler={completionHandler}
 									itemChangeHandler={itemChangeHandler}
 									revertHandler={revertHandler}
+									dragHandler={dragHandler}
+									dropHandler={dropHandler}
 								/>
 							</>
 						} 

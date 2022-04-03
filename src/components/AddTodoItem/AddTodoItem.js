@@ -7,32 +7,31 @@ class AddTodoItem extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			description: "",
+			description: '',
 		};
 	}
 
 	addItem = (e) => {
 		e.preventDefault();
-		if(this.state.description == ""){
+		if(this.state.description === ''){
 			return
 		}
 		this.props.addHandler(this.state);
-		this.setState({ description: "" });
+		this.setState({ description: '' });
 	}
-
 
 	render() {
 		return (
-			<form className="AddItem" onSubmit={this.addItem} >
+			<form className='AddItem' onSubmit={this.addItem} >
 				<input
-					className="newItem"
-					type="text"
-					name="newTodoItem"
+					className='newItem'
+					type='text'
+					name='newTodoItem'
 					value={this.state.description}
-					onChange={ (e) => this.setState({ description: e.target.value })}
+					onChange={(e) => this.setState({ description: e.target.value })}
 				/>
-				<button className="addButton" type="submit">
-					<img className="addImg" src={addButton} alt="add" />
+				<button className='addButton' type='submit'>
+					<img className='addImg' src={addButton} alt='add' />
 				</button>
 			</form>
 		);

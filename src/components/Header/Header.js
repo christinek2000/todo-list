@@ -19,14 +19,20 @@ function Header() {
 			<nav>
 				<ul className='navigation'>
 					<li>
-						<img className='icon' src={checkMark} alt="check mark" />
-						<NavLink className={({ isActive }) => isActive ? 'activeLink' : 'navLink'} to='/todoList'>
+						<img className='icon' src={checkMark} alt='check mark' />
+						<NavLink 
+							className={({ isActive }) => isActive ? 'activeLink' : 'navLink'} 
+							to='/todoList'
+						>
 							TODO LIST
 						</NavLink>
 					</li>
 					<li>
-						<img className='icon' src={pencil} alt="check mark" />
-						<NavLink className={({ isActive }) => isActive ? 'activeLink' : 'navLink'} to='/completedList'>
+						<img className='icon' src={pencil} alt='check mark' />
+						<NavLink 
+							className={({ isActive }) => isActive ? 'activeLink' : 'navLink'} 
+							to='/completedList'
+						>
 							COMPLETED LIST
 						</NavLink>
 					</li>
