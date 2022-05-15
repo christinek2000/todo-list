@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import { TodoProvider } from './components/Store/Context';
+import todoStore from './components/Store/TodoStore';
+
 ReactDOM.render(
-  <React.StrictMode>
+  <TodoProvider value={todoStore}>
     <App />
-  </React.StrictMode>,
+  </TodoProvider>,
   document.getElementById('root')
 );

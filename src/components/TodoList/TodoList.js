@@ -3,23 +3,27 @@ import AddTodoItem from '../AddTodoItem/AddTodoItem';
 import './TodoListStyles.css'
 
 import { Grid } from '@material-ui/core';
+import { useTodoStore } from '../Store/Context';
+import { observer } from 'mobx-react';
+import { v4 as uuid_v4 } from 'uuid';
 
-function TodoList(props) {
-	const renderList = props.items.map((item) => {
-		if(!item.isComplete) 
+function TodoList() {
+	const todoStore = useTodoStore();
+	const renderList = todoStore.todoItems.map((item) => {
+		if(!item.isComplete) {
 			return (
-				<Grid className='item' item xs={12} sm={11} md={6} key={item.id}>
-					<TodoItem 
-						item={item} 
-						deleteHandler={props.deleteHandler} 
-						completionHandler={props.completionHandler}
-						itemChangeHandler={props.itemChangeHandler}
-						dragHandler={props.dragHandler}
-						dropHandler={props.dropHandler}
-					/>
+				<Grid 
+					className='item' 
+					item 
+					xs={12} 
+					sm={11} 
+					md={6} 
+					key={item.id}
+				>
+					<TodoItem item={item} key={item.id}/>
 				</Grid>
 			)
-		return <></>
+		}
 	});
 
 	return (
@@ -30,12 +34,18 @@ function TodoList(props) {
 			alignItems='center'
 			justifyContent='center'
 		>
-			<Grid className='item' item xs={12} sm={11} md={6}>
-				<AddTodoItem addHandler={props.addHandler} />
+			<Grid 
+				className='item' 
+				item 
+				xs={12} 
+				sm={11} 
+				md={6}
+			>
+				<AddTodoItem key={uuid_v4()} />
 			</Grid>
 			{renderList}
 		</Grid>
 	);
 }
 
-export default TodoList;
+export default observer(TodoList);

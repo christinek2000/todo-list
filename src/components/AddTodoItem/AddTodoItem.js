@@ -1,41 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useTodoStore } from '../Store/Context';
+import { observer } from 'mobx-react'
 
 import addButton from '../../img/addButton.png'
 import './AddTodoItemStyles.css'
 
-class AddTodoItem extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			description: '',
-		};
-	}
+function AddTodoItem() {
+	const [description, setDescription] = useState('');
+	const todoStore = useTodoStore();
 
-	addItem = (e) => {
+	const addItems = (e) => {
 		e.preventDefault();
-		if(this.state.description === ''){
+		if(description === ''){
 			return
 		}
-		this.props.addHandler(this.state);
-		this.setState({ description: '' });
+		todoStore.addItem(description);
+		setDescription('');
 	}
 
-	render() {
-		return (
-			<form className='AddItem' onSubmit={this.addItem} >
-				<input
-					className='newItem'
-					type='text'
-					name='newTodoItem'
-					value={this.state.description}
-					onChange={(e) => this.setState({ description: e.target.value })}
-				/>
-				<button className='addButton' type='submit'>
-					<img className='addImg' src={addButton} alt='add' />
-				</button>
-			</form>
-		);
-	}
+	return (
+		<form className='AddItem' onSubmit={addItems} >
+			<input
+				className='newItem'
+				type='text'
+				name='newTodoItem'
+				value={description}
+				onChange={(e) => setDescription(e.target.value)}
+			/>
+			<button className='addButton' type='submit'>
+				<img className='addImg' src={addButton} alt='add' />
+			</button>
+		</form>
+	);
 }
 
-export default AddTodoItem;
+export default observer(AddTodoItem);

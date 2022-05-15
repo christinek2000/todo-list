@@ -1,23 +1,26 @@
 import './CompletedItems.css'
 import revert from '../../img/revert.png'
+import { useTodoStore } from '../Store/Context';
+import { observer } from 'mobx-react'
 
-function CompletedItems(props) {
-	const renderItems = props.items.map((item) => {
-		if(item.isComplete)
+function CompletedItems() {
+	const todoStore = useTodoStore();
+	const renderItems = todoStore.todoItems.map((item) => {
+		if(item.isComplete) {
 			return (
-				<div className='todoItem'>
+				<div className='todoItem' key={item.id}>
 					<div className='itemDescription'>
 						{item.description}
 					</div>
 					<button 
 						className='reverseButton' 
-						onClick={() => props.revertHandler(item.id)}
+						onClick={() => todoStore.setCompletionStatus(item.id, false)}
 					>
 						<img className='revertImg' src={revert} alt='revertImage' />
 					</button>
 				</div>
 			)
-		return <></>
+		}
 	});
 
 	return(
@@ -27,4 +30,4 @@ function CompletedItems(props) {
 	);
 }
 
-export default CompletedItems;
+export default observer(CompletedItems);
